@@ -1,1 +1,1 @@
-# mock-shop
+# Mock Shop
