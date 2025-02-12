@@ -1,0 +1,16 @@
+html {background: 0 0;}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+main {margin-bottom: 4rem;}
+
+a {
+    text-decoration-color: darkslategrey;
+
+    &:hover {text-decoration: none; color: darkslategray;}
+}
