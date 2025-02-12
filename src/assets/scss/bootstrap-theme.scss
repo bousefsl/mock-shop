@@ -1,22 +1,19 @@
+@import '_base';
 @import '_navbar';
-
-  body {
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-    font-family: 'Roboto' sans-serif;
-  }
+@import '_type';
+@import '_card';
+@import '_misc';
   
-  button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6rem 1.2rem;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    transition: border-color 0.25s;
-  }
-  button:hover {
-    border-color: #646cff;
-  }
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}

@@ -1,5 +1,5 @@
 .navbar {
-    color: white;
+    color: white; border-bottom: 0.125rem solid white; box-shadow: 0 0.25rem 0.5rem rgba($color: #000000, $alpha: 0.2);
 
     & > .container-fluid {
         justify-content: unset;

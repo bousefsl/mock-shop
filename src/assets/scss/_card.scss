@@ -1,0 +1,13 @@
+.card {
+    & .card-product-title, & .card-product-price {
+        font-weight: bold; text-align: left; padding-left: 1rem; padding-right: 1rem;
+    }
+
+    & .card-product-title {
+        margin-bottom: 0.25rem;
+    }
+
+    & .card-product-price {
+        font-size: 1.125rem;    //18px
+    }
+}
