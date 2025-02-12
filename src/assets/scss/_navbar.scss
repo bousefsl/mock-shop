@@ -1,0 +1,48 @@
+.navbar {
+    color: white;
+
+    & > .container-fluid {
+        justify-content: unset;
+    }
+
+    & .navbar-brand {
+        text-transform: uppercase; color: white;  margin-right: 2rem;
+    }
+
+    & .navbar-toggler {
+        color: white; margin-right: 1rem;
+    }
+
+    & .navbar-collapse {
+        margin-top: 1rem;
+
+        @media (min-width:992px) {
+            margin-top: 0;
+        }
+    }
+
+    & .navbar-nav {
+        & .nav-item {
+            & .nav-link {
+                color: white; padding-left: 1rem; padding-right: 1rem;
+
+                &.active {
+                    background-color: darkslategrey; border-radius: 0.5rem;
+                }
+            }
+        }
+    }
+
+    & .basket-btn {
+        position: absolute; right: 1rem; top: 0.25rem;
+
+        & .dropdown-toggle {
+            color: white; background-color: transparent; padding-bottom: 1rem;
+
+            & .basket-icon {display: block; color: white; width:1.25rem; height: 1.25rem;}
+
+            &:after {display: none;}
+        }
+    }
+    
+}
