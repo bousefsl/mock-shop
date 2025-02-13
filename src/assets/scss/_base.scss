@@ -14,3 +14,11 @@ a {
 
     &:hover {text-decoration: none; color: darkslategray;}
 }
+
+//Necessary for footer to stick to the bottom
+footer{margin-top: auto;}
+.root-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
