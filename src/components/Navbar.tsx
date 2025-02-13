@@ -36,7 +36,7 @@ export default function Navbar() {
                 </button>
                 <div className="dropdown-menu dropdown-menu-end p-4">
                     <p>Product List here</p>
-                    <Link to='/'>Go to Basket</Link>
+                    <Link to='/basket'>Go to Basket</Link>
                 </div>
             </div>
             
