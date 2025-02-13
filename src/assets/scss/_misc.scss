@@ -7,3 +7,20 @@
 
 //Product Link
 .product-link:hover p {text-decoration: none; color: darkslategray;}
+
+//Basket
+.basket-item {
+    background-color: #ccc; padding: 1rem; border-radius: 1rem; margin-bottom: 1rem;
+
+    & .basket-img {
+        width: 50%; margin-right: 1rem;
+
+        @media (min-width:576px) {
+            width: 100px;  margin-right: 3rem;
+        }
+
+        & img {border-radius: 1rem; width:100%;}
+    }
+
+    & .btn.btn-quantity {padding: 0.15rem 0.5rem; font-size: 1.25rem;}
+}
