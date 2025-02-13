@@ -1,8 +1,41 @@
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { BasketItem } from "../vite-env";
+import { useBasket } from "../components/context/productContext";
 
 export default function Product() {
   const { title } = useParams();
   const loadeddata = useLoaderData();
+
+  const { addItemToBasket } = useBasket(); //To save the data to React context (State.js)
+
+  //State created for the new item to be added
+  const [newItem, setNewItem] = useState<BasketItem>({
+    id: Math.floor(Math.random() * 500),  //Temporary ID,
+    title: "",
+    image: "",
+    price: 0,
+    quantity:0,
+  });
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewItem({
+      ...newItem,
+      [e.currentTarget.id]: parseInt(e.currentTarget.value),
+      title: loadeddata.data.products.edges[0].node.title,
+      image: loadeddata.data.products.edges[0].node.featuredImage.url,
+      price: loadeddata.data.products.edges[0].node.variants.edges[0].node.price.amount,
+    })
+    console.log("changedinput => ", newItem);
+  }
+
+  const handleAddItem = (e: FormEvent) => {
+    e.preventDefault();
+
+    addItemToBasket(newItem);
+    console.log("submitted => ", newItem);
+  }
+
 
   return (
     <div className="product-item">
@@ -16,12 +49,15 @@ export default function Product() {
           <div className="border border-1 border-dark border-opacity-25 mt-5 p-5 rounded-4 bg-white shadow">
             <h1 className="h2">{loadeddata.data.products.edges[0].node.title}</h1>
             <p className="h5">{`£${loadeddata.data.products.edges[0].node.variants.edges[0].node.price.amount}0 CAD`}</p>
+
             <form className="form mb-5">
               <div className="mb-4">
-                <input type="number" id="item-amount"  name="quantity" min="1" value="1" />
+                <label htmlFor="quantity" className="form-label">Quantity</label>
+                <input type="number" className="form-control" id="quantity"  name="quantity" min="1" onChange={handleInputChange} />
               </div>
-              <button type="submit" className="btn btn-primary">Add to Basket</button>
+              <button type="submit" className="btn btn-primary" disabled={newItem === undefined ? true : false} onClick={handleAddItem}>Add to Basket</button>
             </form>
+
             <p>{loadeddata.data.products.edges[0].node.description}</p>
           </div>
         </div>

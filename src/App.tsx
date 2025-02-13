@@ -10,6 +10,9 @@ import Basket from "./pages/Basket";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ProductError from "./pages/ProductError";
+import { BasketProvider } from "./components/context/productContext";
+//Context
+
 
 
 //Create the page router
@@ -34,7 +37,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <BasketProvider>
+        <RouterProvider router={router} />
+      </BasketProvider>  
     </>
   )
 }
