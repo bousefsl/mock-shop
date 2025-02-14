@@ -26,14 +26,12 @@ export default function Product() {
       image: loadeddata.data.products.edges[0].node.featuredImage.url,
       price: loadeddata.data.products.edges[0].node.variants.edges[0].node.price.amount,
     })
-    console.log("changedinput => ", newItem);
   }
 
   const handleAddItem = (e: FormEvent) => {
     e.preventDefault();
 
     addItemToBasket(newItem);
-    console.log("submitted => ", newItem);
   }
 
 
