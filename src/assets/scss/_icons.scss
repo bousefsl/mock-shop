@@ -1,0 +1,9 @@
+$icon-size: 1rem;
+
+.icon {
+    & svg {width: $icon-size; vertical-align: text-bottom;}
+}
+
+.icon-sm {
+    & svg {width: $icon-size * 1.25;}
+}

@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import MiniBasket from "./MiniBasket";
 
 export default function Navbar() {
   return (
@@ -34,9 +35,8 @@ export default function Navbar() {
                     </span>
                     <span className="visually-hidden">View Basket</span>
                 </button>
-                <div className="dropdown-menu dropdown-menu-end p-4">
-                    <p>Product List here</p>
-                    <Link to='/basket'>Go to Basket</Link>
+                <div className="dropdown-menu dropdown-menu-end p-4" role="menu">
+                    <MiniBasket />
                 </div>
             </div>
             
