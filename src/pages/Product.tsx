@@ -18,6 +18,8 @@ export default function Product() {
     quantity:0,
   });
 
+  console.log(newItem)
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewItem({
       ...newItem,

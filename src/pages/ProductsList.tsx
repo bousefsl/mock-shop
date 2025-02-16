@@ -1,30 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-
-interface ProductProps {
-  node: {
-    id: string;
-    title:string;
-    description: string;
-    featuredImage: {
-      id:string;
-      url:string;
-    }
-    variants: {
-      edges: any;
-      node: {
-        price: {
-          amount: number;
-          currencyCode: string;
-        }
-      }
-    }
-  }
-}
+import { ProductProps } from "../vite-env";
 
 export default function ProductsList() {
 
-  const loadeddata = useLoaderData();
+  const loadeddata = useLoaderData() as ProductProps;
   const [products, setProducts] = useState<ProductProps[]>([]);
 
   useEffect(() => {
