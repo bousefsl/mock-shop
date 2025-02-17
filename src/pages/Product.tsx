@@ -1,7 +1,11 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+//Types
 import { BasketItem, ItemParams } from "../vite-env";
+//Context
 import { useBasket } from "../components/context/productContext";
+//Utilities
+import formatCurrency from "../utilities/formatCurrency";
 
 interface ProductItemProps {
   data: {
@@ -78,7 +82,7 @@ export default function Product() {
         <div className="col-md-5">
           <div className="border border-1 border-dark border-opacity-25 mt-5 p-5 rounded-4 bg-white shadow">
             <h1 className="h2">{loadeddata.data.products.edges[0].node.title}</h1>
-            <p className="h5">£{loadeddata.data.products.edges[0].node.variants.edges[0].node.price.amount}0 CAD</p>
+            <p className="h5">{formatCurrency(loadeddata.data.products.edges[0].node.variants.edges[0].node.price.amount)}</p>
 
             <form className="form mb-5">
               <div className="mb-4">

@@ -17,6 +17,7 @@ export interface BasketContextType {
     addItemToBasket: (item: BasketItem) => void;
     removeItemFromBasket: (itemId: number) => void;
     updateBasketItemQuantity: (itemId: number, newQuantity: number) => void;
+    getBasketTotal: () => number;
 }
 
 export interface BasketProviderProps {

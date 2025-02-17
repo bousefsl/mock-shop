@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+//Types
 import { ProductProps } from "../vite-env";
+//Utilities
+import formatCurrency from "../utilities/formatCurrency";
 
 export default function ProductsList() {
 
@@ -28,7 +31,7 @@ export default function ProductsList() {
                       <img src={product.node.featuredImage.url} className="card-img-top" alt={product.node.title} />
                       <div className="card-body">
                         <p className="card-product-title">{product.node.title}</p>
-                        <p className="card-product-price">{`£${product.node.variants.edges[0].node.price.amount}0 CAD`}</p>
+                        <p className="card-product-price">{formatCurrency(product.node.variants.edges[0].node.price.amount)}</p>
                       </div>
                     </div>
                   </Link>
