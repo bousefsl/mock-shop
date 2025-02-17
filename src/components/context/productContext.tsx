@@ -49,7 +49,13 @@ export function BasketProvider({ children }: BasketProviderProps) {
         updateBasketAndStorage(updatedBasket);
     }
 
-    const contextValue: BasketContextType = {basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity}
+    //Function to return a total cost for all items in the basket
+    const getBasketTotal = () => {
+        //Reduce => (accumulator, currentValue) => accumulator + currentValue, initialValue
+        return basket.reduce((total: number, item: BasketItem ) => total + item.amount * item.quantity, 0)
+    }
+
+    const contextValue: BasketContextType = {basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal}
 
     return (
         <BasketContext.Provider value={contextValue}>
