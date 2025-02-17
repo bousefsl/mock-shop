@@ -33,7 +33,7 @@ export default function Basket() {
                             <p className="h5">{item.title}</p>
                             <p className="">
                               <button type="button" className="btn btn-secondary btn-sm btn-quantity" 
-                                onClick={() => updateBasketItemQuantity(item.id, item.quantity - 1)} disabled={item.quantity === 0 ? true : false}>
+                                onClick={() => updateBasketItemQuantity(item.id, item.quantity - 1)} disabled={item.quantity === 1 ? true : false}>
                                 -
                               </button>
                               <span className="mx-2">{item.quantity}</span>
@@ -43,7 +43,7 @@ export default function Basket() {
                             </p>
                           </div>
                           <div className="basket-price ms-auto">
-                            <p className="h5">{`£${item.price}0 CAD`}</p>
+                            <p className="h5">{`£${item.amount}0 CAD`}</p>
                             <p className="text-end">
                               <button type="button" className="btn btn-secondary btn-sm btn-quantity" onClick={() => removeItemFromBasket(item.id)}>Remove</button>
                             </p>
