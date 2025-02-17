@@ -20,7 +20,7 @@ export default function ProductsList() {
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 gx-5 gy-5">
 
            {products.map((product, index) => (
-              <>
+              
                 <div className="col" key={index}>
 
                   <Link to={product.node.title} className="product-link">
@@ -34,7 +34,7 @@ export default function ProductsList() {
                   </Link>
 
                 </div>
-              </>
+              
             ))}
 
           </div>

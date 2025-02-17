@@ -7,7 +7,7 @@ export interface BasketItem {
     id: number;
     title: string;
     image: string;
-    price: number;
+    amount: number;
     quantity: number;
 }
 
@@ -54,4 +54,11 @@ export interface IFeatImg {
 export interface IPrice {
   amount: number;
   currencyCode: string;
+}
+
+
+
+
+export type ItemParams = {
+  title: string;
 }
