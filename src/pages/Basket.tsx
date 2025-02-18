@@ -8,6 +8,8 @@ export default function Basket() {
 
   const {basket, updateBasketItemQuantity, removeItemFromBasket, getBasketTotal} = useBasket();
 
+  //console.log("basket: ", basket);
+
   return (
     <div className="container-xxl mt-5">
       <div className="row">

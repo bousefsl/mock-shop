@@ -9,14 +9,11 @@ import formatCurrency from "../utilities/formatCurrency";
 
 interface ProductItemProps {
   data: {
-    products: {
-      edges: Array<Node>
-    }
+    product: Product;
   }
 }
 
-interface Node {
-  node: {
+interface Product {
     id: string;
     title:string;
     description: string;
@@ -24,7 +21,6 @@ interface Node {
     variants: {
       edges: Array<InnerNode>;
     }
-  }
 }
 
 interface InnerNode {
@@ -47,14 +43,16 @@ export default function Product() {
 
   const loadeddata = useLoaderData() as ProductItemProps;
 
-  const { addItemToBasket } = useBasket();
+  const { basket, addItemToBasket, basketQuantity, updateBasketItemQuantity } = useBasket();
 
   //State created for the new item to be added
   const [newItem, setNewItem] = useState<BasketItem>({
-    id: Math.floor(Math.random() * 1000),
-    title: loadeddata.data.products.edges[0].node.title,
-    image: loadeddata.data.products.edges[0].node.featuredImage.url,
-    amount: loadeddata.data.products.edges[0].node.variants.edges[0].node.price.amount,
+    //The "id" in the requested data is gid://shopify/Product/7982853619734 (for e.g)
+    //We want the unique number on the end for our id when placed in the basket
+    id: parseInt((loadeddata.data.product.id).substring((loadeddata.data.product.id).lastIndexOf('/') + 1)),
+    title: loadeddata.data.product.title,
+    image: loadeddata.data.product.featuredImage.url,
+    amount: loadeddata.data.product.variants.edges[0].node.price.amount,
     quantity: 0,
   });
 
@@ -68,7 +66,16 @@ export default function Product() {
   const handleAddItem = (e: FormEvent) => {
     e.preventDefault();
 
-    addItemToBasket(newItem);
+    if (basketQuantity > 0) {
+      const basketItem = basket.find(item => item.id === newItem.id);
+      if (basketItem === undefined) {
+        addItemToBasket(newItem);
+      } else {
+        updateBasketItemQuantity(basketItem.id, basketItem.quantity + newItem.quantity)
+      }
+    } else {
+      addItemToBasket(newItem);
+    }
   }
 
   return (
@@ -76,13 +83,13 @@ export default function Product() {
       <div className="row">
         <div className="col-md-7">
           <div>
-            <img src={loadeddata.data.products.edges[0].node.featuredImage.url} alt={loadeddata.data.products.edges[0].node.title} width="100%" height="100%" />
+            <img src={loadeddata.data.product.featuredImage.url} alt={loadeddata.data.product.title} width="100%" height="100%" />
           </div>
         </div>
         <div className="col-md-5">
           <div className="border border-1 border-dark border-opacity-25 mt-5 p-5 rounded-4 bg-white shadow">
-            <h1 className="h2">{loadeddata.data.products.edges[0].node.title}</h1>
-            <p className="h5">{formatCurrency(loadeddata.data.products.edges[0].node.variants.edges[0].node.price.amount)}</p>
+            <h1 className="h2">{loadeddata.data.product.title}</h1>
+            <p className="h5">{formatCurrency(loadeddata.data.product.variants.edges[0].node.price.amount)}</p>
 
             <form className="form mb-5">
               <div className="mb-4">
@@ -92,7 +99,7 @@ export default function Product() {
               <button type="submit" className="btn btn-primary" disabled={newItem.quantity === 0 ? true : false} onClick={handleAddItem}>Add to Basket</button>
             </form>
 
-            <p>{loadeddata.data.products.edges[0].node.description}</p>
+            <p>{loadeddata.data.product.description}</p>
           </div>
         </div>
       </div>
@@ -104,12 +111,12 @@ export const productItemLoader = async( { params } : { params:any } ) => {
   //For the "params" object, we declare the type as "any"
   
   //We want to fetch a single product, the params property contains in-route parameters which we can destructure
-  //Here, params is {title: 'Slides'} for example  -- ("title" used as our Route Parameter in App.tsx)
-  //When destructured, we'll get 'Slides' which we can use in our request below
-  const { title } = params as ItemParams;
+  //Here, params is {handle: 'slides'} for example  -- ("handle" used as our Route Parameter in App.tsx)
+  //When destructured, we'll get 'slides' which we can use in our request below
+  const { handle } = params as ItemParams;
 
   //Get the products from the mock.shop API
-  const request = await fetch(`https://mock.shop/api?query={products(first:%201,%20query:%20%22title:${title}%22){edges%20{node%20{title%20description%20featuredImage%20{id%20url}%20variants(first:%201){edges%20{node%20{price%20{amount%20currencyCode}}}}}}}}`);      
+  const request = await fetch(`https://mock.shop/api?query={product(handle:%20%22${handle}%22){id%20title%20description%20featuredImage%20{id%20url}%20variants(first:%201){edges%20{node%20{price%20{amount%20currencyCode}}}}}}`);    
 
   if (!request.ok) {
       throw Error('Could not fetch the product item');

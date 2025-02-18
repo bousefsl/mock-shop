@@ -24,6 +24,11 @@ export function BasketProvider({ children }: BasketProviderProps) {
         localStorage.setItem("basket", JSON.stringify(newBasket));
     }
 
+    //Function to return the quantity in the basket
+    const basketQuantity = basket.reduce(
+        (quantity, item) => item.quantity + quantity, 0
+    )
+
     //Function to add a new item to the basket
     const addItemToBasket = (item: BasketItem) => {
         const updatedBasket = [...basket, item];
@@ -40,7 +45,7 @@ export function BasketProvider({ children }: BasketProviderProps) {
     //Function to update the quantity of the item in the basket
     const updateBasketItemQuantity = (itemId: number, newQuantity: number) => {
         const updatedBasket = basket.map((item) => {
-            //Map through the array, when the id is found, update it's quantity value
+            //Map through the array, when the id is found, update it's quantity value else just return the item
             if (item.id === itemId) {
                 return {...item, quantity: newQuantity};
             }
@@ -55,7 +60,7 @@ export function BasketProvider({ children }: BasketProviderProps) {
         return basket.reduce((total: number, item: BasketItem ) => total + item.amount * item.quantity, 0)
     }
 
-    const contextValue: BasketContextType = {basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal}
+    const contextValue: BasketContextType = {basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal, basketQuantity}
 
     return (
         <BasketContext.Provider value={contextValue}>
