@@ -6,7 +6,7 @@ import formatCurrency from "../utilities/formatCurrency";
 
 export default function Basket() {
 
-  const {basket, updateBasketItemQuantity, removeItemFromBasket, getBasketTotal} = useBasket();
+  const {basket, updateBasketItemQuantity, removeItemFromBasket, getBasketTotal, basketQuantity} = useBasket();
 
   //console.log("basket: ", basket);
 
@@ -15,13 +15,9 @@ export default function Basket() {
       <div className="row">
         <div className="col-12">
           <div className="basket">
-            <div className="d-flex">
-              <div className="me-sm-auto">
-                <h1>Basket Page</h1>
-              </div>
-              <div className="align-self-center">
-                <Link to='/products'>Continue Shopping</Link>
-              </div>
+            <div className="title-with-link">
+              <h1 className="me-4 mb-3 mb-sm-0">Your Basket</h1>
+              <Link to='/products'>Continue Shopping</Link>
             </div>
 
             <div className="basket">
@@ -59,12 +55,21 @@ export default function Basket() {
                     </div>
                   )
               })}
-              <div className="text-end">
-                <p className="h5 mb-2">
-                  <span className="me-2 fw-bold">Total:</span><span>{formatCurrency(getBasketTotal())}</span>
-                </p>
-              </div>
             </div>
+
+            {
+              basketQuantity > 0 ? (
+                <div className="text-end">
+                  <p className="h5 mb-2">
+                    <span className="me-2 fw-bold">Total:</span><span>{formatCurrency(getBasketTotal())}</span>
+                  </p>
+                </div>
+              ) : (
+                <div className="text-center border border-dark-subtle rounded p-4">
+                  <p className="h3 mb-0">Your basket is empty</p>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>

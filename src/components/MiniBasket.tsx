@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useBasket } from "./context/productContext"
-import { BasketItem } from "../vite-env";
+//Context
+import { useBasket } from "./context/productContext";
 
 export default function MiniBasket() {
 

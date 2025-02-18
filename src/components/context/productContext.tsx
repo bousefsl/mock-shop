@@ -6,7 +6,10 @@ const BasketContext = createContext<BasketContextType | undefined>(undefined);
 
 
 export function BasketProvider({ children }: BasketProviderProps) {
+    //Mini-basket open/close state
+    const [isOpen, setIsOpen] = useState(false);
 
+    //Basket State
     const [basket, setBasket] = useState<BasketItem[]>([]);
 
     //Load basket from localStorage when the context is initialized
@@ -23,6 +26,10 @@ export function BasketProvider({ children }: BasketProviderProps) {
         setBasket(newBasket);
         localStorage.setItem("basket", JSON.stringify(newBasket));
     }
+
+    //Functions to control the mini-basket
+    const openBasket = () => setIsOpen(true);
+    const closeBasket = () => setIsOpen(false);
 
     //Function to return the quantity in the basket
     const basketQuantity = basket.reduce(
@@ -60,7 +67,9 @@ export function BasketProvider({ children }: BasketProviderProps) {
         return basket.reduce((total: number, item: BasketItem ) => total + item.amount * item.quantity, 0)
     }
 
-    const contextValue: BasketContextType = {basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal, basketQuantity}
+    const contextValue: BasketContextType = {
+        basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal, basketQuantity, openBasket, closeBasket
+    }
 
     return (
         <BasketContext.Provider value={contextValue}>
