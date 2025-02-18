@@ -66,6 +66,9 @@ export default function Product() {
   const handleAddItem = (e: FormEvent) => {
     e.preventDefault();
 
+    //Check to see if our basket has any quantity, therefore item(s)
+    //If we can't find our basket item to be added, add it OR
+    //we have the item in our basket already, so update the quantity instead
     if (basketQuantity > 0) {
       const basketItem = basket.find(item => item.id === newItem.id);
       if (basketItem === undefined) {

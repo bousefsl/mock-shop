@@ -1,3 +1,10 @@
+/*MINI BASKET*/
+
 .mini-basket {
     max-width: 19rem; width: 19rem;
+}
+
+/*MAIN BASKET*/
+.title-with-link {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 3rem;
 }
