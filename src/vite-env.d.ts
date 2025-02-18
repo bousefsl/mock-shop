@@ -21,6 +21,7 @@ export interface BasketContextType {
     basketQuantity: number;
     openBasket: () => void;
     closeBasket: () => void;
+    isOpenValue: boolean;
 }
 
 export interface BasketProviderProps {
@@ -61,9 +62,12 @@ export interface IPrice {
   currencyCode: string;
 }
 
-
-
-
+//Product Query
 export type ItemParams = {
   handle: string;
+}
+
+//Mini-Basket
+export type NavBarProps = {
+  isOpenValue: boolean
 }

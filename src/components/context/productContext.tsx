@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { BasketContextType, BasketItem, BasketProviderProps } from "../../vite-env"
 
-
 const BasketContext = createContext<BasketContextType | undefined>(undefined);
 
 
@@ -30,6 +29,8 @@ export function BasketProvider({ children }: BasketProviderProps) {
     //Functions to control the mini-basket
     const openBasket = () => setIsOpen(true);
     const closeBasket = () => setIsOpen(false);
+    //State variable
+    const isOpenValue = isOpen;
 
     //Function to return the quantity in the basket
     const basketQuantity = basket.reduce(
@@ -68,7 +69,7 @@ export function BasketProvider({ children }: BasketProviderProps) {
     }
 
     const contextValue: BasketContextType = {
-        basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal, basketQuantity, openBasket, closeBasket
+        basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal, basketQuantity, openBasket, closeBasket, isOpenValue
     }
 
     return (

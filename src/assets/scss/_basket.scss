@@ -1,7 +1,11 @@
 /*MINI BASKET*/
 
 .mini-basket {
-    max-width: 19rem; width: 19rem;
+    margin-top: 2rem;
+
+    & .mini-basket-items {
+        max-height: 12rem; overflow-y: scroll;
+    }
 }
 
 /*MAIN BASKET*/

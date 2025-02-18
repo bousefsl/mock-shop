@@ -43,7 +43,7 @@ export default function Product() {
 
   const loadeddata = useLoaderData() as ProductItemProps;
 
-  const { basket, addItemToBasket, basketQuantity, updateBasketItemQuantity } = useBasket();
+  const { basket, addItemToBasket, basketQuantity, updateBasketItemQuantity, openBasket } = useBasket();
 
   //State created for the new item to be added
   const [newItem, setNewItem] = useState<BasketItem>({
@@ -79,6 +79,8 @@ export default function Product() {
     } else {
       addItemToBasket(newItem);
     }
+    
+    openBasket();
   }
 
   return (
