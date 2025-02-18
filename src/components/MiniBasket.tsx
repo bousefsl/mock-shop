@@ -4,19 +4,25 @@ import formatCurrency from "../utilities/formatCurrency";
 
 export default function MiniBasket() {
 
-    const { basket } = useBasket();
+    const { basket, basketQuantity } = useBasket();
 
   return (
     <div className="mini-basket" role="menu">
         <div>
-            <p className="fw-semibold">
-                <span className="icon icon-sm me-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="tick-icon">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                    </svg>
-                </span>
-                Your item has been added
-            </p>
+            {
+                basketQuantity > 0 ? (
+                <p className="fw-semibold">
+                    <span className="icon icon-sm me-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="tick-icon">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                    </span>
+                    Your item has been added
+                </p>
+                ) : (
+                    <p className="fw-medium text-center">You have no items in your basket</p>
+                )
+            }
         </div>
         <div className="mini-basket-items mb-3">
             {basket.map((item, index) => {
