@@ -8,6 +8,8 @@ import formatCurrency from "../utilities/formatCurrency";
 export default function ProductsList() {
 
   const loadeddata = useLoaderData() as ProductProps;
+  //console.log(loadeddata);
+
   const [products, setProducts] = useState<ProductProps[]>([]);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function ProductsList() {
               
                 <div className="col" key={index}>
 
-                  <Link to={product.node.title} className="product-link">
+                  <Link to={product.node.handle} className="product-link">
                     <div className="card h-100 card-transparent border border-0">
                       <img src={product.node.featuredImage.url} className="card-img-top" alt={product.node.title} />
                       <div className="card-body">
@@ -53,7 +55,7 @@ export default function ProductsList() {
 export const productsLoader = async() => { 
   
   //Get the products from the mock.shop API
-  const request = await fetch('https://mock.shop/api?query={products(first:%2020){edges%20{node%20{id%20title%20description%20featuredImage%20{id%20url}%20variants(first:%203){edges%20{node%20{price%20{amount%20currencyCode}}}}}}}}');      
+  const request = await fetch('https://mock.shop/api?query={products(first:%2020){edges%20{node%20{id%20title%20handle%20description%20featuredImage%20{id%20url}%20variants(first:%201){edges%20{node%20{price%20{amount%20currencyCode}}}}}}}}');      
 
   if (!request.ok) {
       throw Error('Could not fetch the products');

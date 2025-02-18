@@ -23,8 +23,8 @@ const router = createBrowserRouter(
       <Route path="products" element={ <ProductsLayout /> } errorElement={ <ProductError /> }>
 
         <Route index element={ <ProductsList /> } loader={ productsLoader }/>
-        {/* ":title" is the "changeable" part of the Route, the "Route Parameter" */}
-        <Route path=":title" element={ <Product /> } loader={ productItemLoader }/>
+        {/* ":handle" is the "changeable" part of the Route, the "Route Parameter" */}
+        <Route path=":handle" element={ <Product /> } loader={ productItemLoader }/>
 
       </Route>
       <Route path="about" element={ <About /> }></Route>

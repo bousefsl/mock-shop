@@ -18,6 +18,7 @@ export interface BasketContextType {
     removeItemFromBasket: (itemId: number) => void;
     updateBasketItemQuantity: (itemId: number, newQuantity: number) => void;
     getBasketTotal: () => number;
+    basketQuantity: number;
 }
 
 export interface BasketProviderProps {
@@ -37,6 +38,7 @@ export interface ProductProps {
 export interface INode {
   id: string;
   title:string;
+  handle: string;
   description: string;
   featuredImage: IFeatImg;
   variants: {
@@ -61,5 +63,5 @@ export interface IPrice {
 
 
 export type ItemParams = {
-  title: string;
+  handle: string;
 }
