@@ -24,3 +24,12 @@
 
     & .btn.btn-quantity {padding: 0.15rem 0.5rem; font-size: 1.25rem;}
 }
+
+//Lazy Loading Message
+.lazy-loading-message {
+    display: flex; justify-content: center;
+
+    & .lazy-msg-wrapper {
+        background-color: lightgrey; padding: 0.5rem 1.5rem; border-radius: 1.5rem; max-width:15rem;
+    }
+}
