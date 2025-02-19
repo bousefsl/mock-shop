@@ -40,7 +40,7 @@ And uses React Router v6.4, to install:
 
 ## Technical decisions and reasoning
 
-+ I used verion 1.77.6 for Bootstrap SASS as I have experienced a few bugs in the recent past with the latest version. I found several recommendations online to use v1.77.6 as it appears to be more stable.
++ I used verion 1.77.6 for Bootstrap SASS as I have experienced a few bugs in the recent past with the latest version. Having explored online, it appeared v1.77.6 was recommended to use due to being more stable plus I have used it before with no notable issues.
 
 + At the time of learning React Router, v6.4 was recommended as the latest stable version which I have used ever since.
 
@@ -48,9 +48,8 @@ And uses React Router v6.4, to install:
 
 Given time, there are a number of improvements I would make:
 
-+ Populate the mini-basket with the last product of the basket array and add a message should it be empty. I too, would trigger the basket to display upon clicking the 'Add to Basket' CTA.
-+ Fix the 'type' bug found within the Product Listing & Product pages (I was unable to deploy to Vercel due to this issue, unfortunately). As the pages appeared to work, I felt it was necessary to address it later in order to create the Context & Basket layout.
-+ Add a method to update the item cost upon updating the quantity (Basket Page).
-+ Add the basket total
 + Add at least one unit test and one integration test - unfortunately, I have no past experience of doing this. It is something I intend to look into at a later date.
 + Optimise for load speed and performance
++ Animate the mini-basket to make it more visually appealing, plus, I'd explore a better way to implement it so the window may be dismissed when clicking elsewhere on the site.
++ I would like to extend the product page to incorporate other areas the mock.shop API offers, for instance, variants (e.g colours), collections and a "You may also like section".
++ Simply make it look a lot better in appearance
