@@ -10,9 +10,8 @@ import Basket from "./pages/Basket";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ProductError from "./pages/ProductError";
-import { BasketProvider } from "./components/context/productContext";
 //Context
-
+import { BasketProvider } from "./components/context/productContext";
 
 
 //Create the page router
