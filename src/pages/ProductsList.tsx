@@ -8,7 +8,6 @@ import formatCurrency from "../utilities/formatCurrency";
 export default function ProductsList() {
 
   const loadeddata = useLoaderData() as ProductProps;
-  //console.log(loadeddata);
 
   const [products, setProducts] = useState<ProductProps[]>([]);
 
@@ -30,7 +29,7 @@ export default function ProductsList() {
 
                   <Link to={product.node.handle} className="product-link">
                     <div className="card h-100 card-transparent border border-0">
-                      <img src={product.node.featuredImage.url} className="card-img-top" alt={product.node.title} />
+                      <img src={product.node.featuredImage.url} className="card-img-top" alt={product.node.title} loading="lazy" />
                       <div className="card-body">
                         <p className="card-product-title">{product.node.title}</p>
                         <p className="card-product-price">{formatCurrency(product.node.variants.edges[0].node.price.amount)}</p>

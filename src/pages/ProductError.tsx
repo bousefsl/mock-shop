@@ -5,10 +5,17 @@ export default function ProductError() {
 
   return (
     <div className="careers-error">
-        <h2>Error</h2>
-        <p>{error.message}</p>
+        <div className="container-xxl mt-5">
+          <div className="row">
+            <div className="col-12"></div>
 
-        <Link to="/" className="btn btn-primary">Back to the Homepage</Link>
+            <h1>Oops! An unexpected error has occurred.</h1>
+            <p>{(error as Error)?.message || (error as { statusText?: string })?.statusText}</p>
+
+            <p><Link to="/" className="btn btn-primary">Back to the Homepage</Link></p>
+
+          </div>
+        </div>
     </div>
   )
 }
