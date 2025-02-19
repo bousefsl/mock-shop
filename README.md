@@ -48,8 +48,7 @@ And uses React Router v6.4, to install:
 
 Given time, there are a number of improvements I would make:
 
-+ Add at least one unit test and one integration test - unfortunately, I have no past experience of doing this. It is something I intend to look into at a later date.
-+ Optimise for load speed and performance: I'd componentise the mapped product loading sections so they may be imported "lazily" and wrapped in a "Suspense" tag complete with a loading message.
++ Add at least one unit test and one integration test - unfortunately, I have no past experience of doing this. It is something I intend to look into.
 + Animate the mini-basket to make it more visually appealing, plus, I'd explore a better way to implement it so the window may be dismissed when clicking elsewhere on the site.
 + I would like to extend the product page to incorporate other areas the mock.shop API offers, for instance, variants (e.g colours), collections and a "You may also like section".
 + Simply make it look a lot better in appearance.
