@@ -19,13 +19,16 @@ export interface BasketContextType {
     updateBasketItemQuantity: (itemId: number, newQuantity: number) => void;
     getBasketTotal: () => number;
     basketQuantity: number;
-    openBasket: () => void;
-    closeBasket: () => void;
-    isOpenValue: boolean;
 }
 
 export interface BasketProviderProps {
   children: ReactNode;
+}
+
+export interface MiniBasketcontextType {
+  isOpenValue: boolean,
+  openBasket: () => void,
+  closeBasket: () => void,
 }
 
 //Defines the shape of a product object
