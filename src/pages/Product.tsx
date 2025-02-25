@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 //Types
 import { BasketItem, ItemParams } from "../vite-env";
 //Context
-import { useBasket } from "../components/context/productContext";
+import { useBasket, useMiniBasketOverlay } from "../components/context/productContext";
 //Utilities
 import formatCurrency from "../utilities/formatCurrency";
 
@@ -43,7 +43,8 @@ export default function Product() {
 
   const loadeddata = useLoaderData() as ProductItemProps;
 
-  const { basket, addItemToBasket, basketQuantity, updateBasketItemQuantity, openBasket } = useBasket();
+  const { basket, addItemToBasket, basketQuantity, updateBasketItemQuantity } = useBasket();
+  const { openBasket } = useMiniBasketOverlay();
 
   //State created for the new item to be added
   const [newItem, setNewItem] = useState<BasketItem>({
@@ -79,7 +80,7 @@ export default function Product() {
     } else {
       addItemToBasket(newItem);
     }
-    
+
     openBasket();
   }
 

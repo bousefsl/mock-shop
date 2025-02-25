@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { BasketContextType, BasketItem, BasketProviderProps } from "../../vite-env"
+import { BasketContextType, BasketItem, BasketProviderProps, MiniBasketcontextType } from "../../vite-env"
 
+const MiniBasketContext = createContext<MiniBasketcontextType | undefined>(undefined)
 const BasketContext = createContext<BasketContextType | undefined>(undefined);
-
 
 export function BasketProvider({ children }: BasketProviderProps) {
     //Mini-basket open/close state
@@ -68,13 +68,18 @@ export function BasketProvider({ children }: BasketProviderProps) {
         return basket.reduce((total: number, item: BasketItem ) => total + item.amount * item.quantity, 0)
     }
 
+    //Provide context values
+    const miniBasketOverlayContextValue: MiniBasketcontextType = {openBasket, closeBasket, isOpenValue}
+
     const contextValue: BasketContextType = {
-        basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal, basketQuantity, openBasket, closeBasket, isOpenValue
+        basket, addItemToBasket, removeItemFromBasket, updateBasketItemQuantity, getBasketTotal, basketQuantity 
     }
 
     return (
         <BasketContext.Provider value={contextValue}>
-            {children}
+            <MiniBasketContext.Provider value={miniBasketOverlayContextValue}>
+                {children}
+            </MiniBasketContext.Provider>
         </BasketContext.Provider>
     )
 }
@@ -84,6 +89,16 @@ export function useBasket() {
 
     if (!context) {
         throw new Error("useBasket must be used within the BasketProvider");
+    }
+
+    return context;
+}
+
+export function useMiniBasketOverlay() {
+    const context = useContext(MiniBasketContext);
+
+    if (!context) {
+        throw new Error("useMiniBasketOverlay must be used within the MiniBasketProvider")
     }
 
     return context;
